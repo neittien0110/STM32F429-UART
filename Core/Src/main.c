@@ -40,6 +40,7 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+/// Handle điều khiển giao tiếp UART với máy tính
 UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
@@ -95,8 +96,13 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  char buf[] = "hello\r\n";
   while (1)
   {
+	  /// Gửi dữ liệu về máy tính
+	  HAL_UART_Transmit(&huart1, (const uint8_t *)buf , strlen(buf), 2);
+	  /// Đợi một chút trước khi gửi tiếp
+	  HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
